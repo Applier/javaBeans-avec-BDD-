@@ -26,10 +26,10 @@ public class DomaineCompetences {
 	@ManyToOne
 	private InfosCV infos;
 	
-	private String intitule; // l'intitul� du domaine (ex: informatique)
+	private String intitule; // l'intitulé du domaine (ex: informatique)
 	
 	@OneToMany(mappedBy = "domaine")
-	private Collection<Competence> competences; // les comp�tences individuelles (ex : Java, C, LaTeX...)
+	private Collection<Competence> competences; // les compétences individuelles (ex : Java, C, LaTeX...)
 	
 	/* Getters et Setters */
 	

@@ -23,9 +23,11 @@ public class Competence {
 	private int idCompetence;
 	
 	@ManyToOne
-	private DomaineCompetences domaine;
-	
+	private InfosCV infos;
+
 	private String intitule;
+	
+	private String détails;
 
 	/* Getters et Setters */
 	
@@ -36,15 +38,15 @@ public class Competence {
 	public void setIdCompetence(int idCompetence) {
 		this.idCompetence = idCompetence;
 	}
-
-	public DomaineCompetences getDomaine() {
-		return domaine;
+	
+	public InfosCV getInfos() {
+		return infos;
 	}
 
-	public void setDomaine(DomaineCompetences domaine) {
-		this.domaine = domaine;
+	public void setInfos(InfosCV infos) {
+		this.infos = infos;
 	}
-
+	
 	public String getIntitule() {
 		return intitule;
 	}
@@ -52,6 +54,13 @@ public class Competence {
 	public void setIntitule(String intitule) {
 		this.intitule = intitule;
 	}
-	
 
+	public String getDétails() {
+		return détails;
+	}
+
+	public void setDétails(String détails) {
+		this.détails = détails;
+	}
+	
 }

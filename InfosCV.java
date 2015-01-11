@@ -35,7 +35,7 @@ public class InfosCV {
 	private String mailPro;
 	
 	@OneToMany(mappedBy = "infos")
-	private Collection<DomaineCompetences> competences;
+	private Collection<Competence> competences;
 	
 	@OneToMany(mappedBy = "infos")
 	private Collection<Emploi> emplois;
@@ -116,10 +116,10 @@ public class InfosCV {
 	}
 	
 	// domainesCompetences
-	public Collection<DomaineCompetences> getCompetences() {
+	public Collection<Competence> getCompetences() {
 		return this.competences;
 	}
-	public void setCompetences(Collection<DomaineCompetences> competences) {
+	public void setCompetences(Collection<Competence> competences) {
 		this.competences = competences;
 	}
 	
@@ -160,8 +160,8 @@ public class InfosCV {
 		
 	// ajouter
 		
-	public void addDomaineCompetences(DomaineCompetences domaine) {
-		this.competences.add(domaine);
+	public void addCompetence(Competence competence) {
+		this.competences.add(competence);
 	}
 	
 	public void addEmploi(Emploi emploi) {
@@ -182,8 +182,8 @@ public class InfosCV {
 			
 	// supprimer
 	
-	public void removeCompetence(DomaineCompetences domaine) {
-		this.competences.remove(domaine);
+	public void removeCompetence(Competence competence) {
+		this.competences.remove(competence);
 	}
 	public void removeAllCompetences() {
 		this.competences.clear();

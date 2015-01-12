@@ -3,7 +3,7 @@
  */
 package intergiciels.beans;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -31,13 +31,13 @@ public class Offre {
 	
 	private String intitule;
 	private String entreprise;
-	private Date deadLine;
+	private Date dateLimite;
 	private String description;
 	
-	@OneToMany(mappedBy = "offre")
-	private Collection<Tache> taches;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "offre")
+	private Set<Tache> taches;
 	
-	@OneToOne(mappedBy="offre")
+	@OneToOne(fetch = FetchType.EAGER, mappedBy="offre")
 	private Correspondance correspondance;
 	
 	/* Getters et Setters */
@@ -74,12 +74,12 @@ public class Offre {
 		this.entreprise = entreprise;
 	}
 	
-	// deadLine
-	public Date getDeadLine() {
-		return deadLine;
+	// dateLimite
+	public Date getdateLimite() {
+		return dateLimite;
 	}
-	public void setDeadLine(Date deadLine) {
-		this.deadLine = deadLine;
+	public void setdateLimite(Date dateLimite) {
+		this.dateLimite = dateLimite;
 	}
 	
 	// description
@@ -91,10 +91,10 @@ public class Offre {
 	}
 	
 	// taches
-	public Collection<Tache> getTaches() {
+	public Set<Tache> getTaches() {
 		return taches;
 	}
-	public void setTaches(Collection<Tache> taches) {
+	public void setTaches(Set<Tache> taches) {
 		this.taches = taches;
 	}
 	
@@ -106,7 +106,7 @@ public class Offre {
 		this.correspondance = correspondance;
 	}
 	
-	/* Méthodes complémentaires sur la collection de tâches */
+	/* Méthodes complémentaires sur la Set de tâches */
 	
 	// ajouter
 		

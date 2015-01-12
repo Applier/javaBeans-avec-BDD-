@@ -25,13 +25,23 @@ public class Facade {
 
 	public void ajoutUser(String mail, String password) {
 		User user = new User();
+		InfosCV infos = new InfosCV();
 		user.setMail(mail);
 		user.setPassword(password);
+		user.setInfos(infos);
+		infos.setUser(user);
+		em.persist(infos);
 		em.persist(user);
 		User u1 = (User) em.find(User.class, mail);
 		System.out.println("1ajoutUSEReeeeeeeeeeeee " + u1.toString() + " fffffffffffff" + mail);
 		//User u2 = em.find(User.class, "toto");
 		//System.out.println("2ajoutUSEReeeeeeeeeeeee " + u2.toString() + " fffffffffffff" + mail);
+	}
+	
+	public User getUser(String mail) {
+		User user = (User) em.createQuery("FROM User WHERE mail =" + "\'" + mail + "\'", User.class).getSingleResult();
+		System.out.println("Recup des infos de " + user.getMail());
+		return user;
 	}
 	
 	public boolean userPresent(String mail) {
@@ -47,22 +57,22 @@ public class Facade {
 		if (user.getMail() != mail) {
 			System.out.println("l'user n'existe pas !!!!!!!!!!!!!!!!!!!!!!!");
 		}
-		return (user.getMail() == mail); // return true si user est pr�sent dans la BDD
+		return (user.getMail() == mail); // return true si user est présent dans la BDD
 	}
 	
 	public boolean verificationUser(String mail, String password) {
 		User user = (User) em.find(User.class, mail);
-		return (user.getPassword() == password);
+		return (user.getPassword().equals(password));
 	}
 	
 	/* LES OFFRES */
 	
-	public void ajoutOffre(String mailUser, String intitule, String entreprise, String description, Date deadLine) {
+	public void ajoutOffre(String mailUser, String intitule, String entreprise, String description, Date dateLimite) {
 		Offre offre = new Offre();
 		offre.setIntitule(intitule);
 		offre.setEntreprise(entreprise);
 		offre.setDescription(description);
-		offre.setDeadLine(deadLine);
+		offre.setdateLimite(dateLimite);
 		User user = em.find(User.class, mailUser);
 		offre.setUser(user);
 		em.persist(offre);
@@ -78,56 +88,27 @@ public class Facade {
 		em.persist(tache);
 	}
 	
-	public void modifierEtatTache(int idTache) {
-		Tache tache = (User) em.find(Tache.class, idTache);
+	public void modificationEtatTache(int idTache) {
+		Tache tache = em.find(Tache.class, idTache);
 		boolean etat = tache.isEtat();
 		tache.setEtat(!etat);	
 	}
 		
 	/* LE PROFIL POUR LE CV */
 	
-	public void modificationNom(String mailUser, String nom) {
-		User user = (User) em.find(User.class, mailUser);
-		InfosCV infos = user.getInfos();
-		infos.setNom(nom);
-		user.setInfos(infos);
+	public InfosCV getInfos(String mailUser) {
+		InfosCV infos = (InfosCV) em.createQuery("FROM InfosCV WHERE user_mail =" + "\'" + mailUser + "\'", InfosCV.class).getSingleResult();
+		System.out.println("Recup des infos de " + infos.getUser().getMail());
+		return infos;
 	}
 	
-	public void modificationPrenom(String mailUser, String prenom) {
-		User user = (User) em.find(User.class, mailUser);
-		InfosCV infos = user.getInfos();
-		infos.setPrenom(prenom);
-		user.setInfos(infos);
+	public void setInfos(String mailUser, InfosCV newInfos) {
+		this.getInfos(mailUser).setNom(newInfos.getNom());
+		this.getInfos(mailUser).setPrenom(newInfos.getPrenom());
+		this.getInfos(mailUser).setNumTel(newInfos.getNumTel());
+		this.getInfos(mailUser).setAdresse(newInfos.getAdresse());
+		this.getInfos(mailUser).setMailPro(newInfos.getMailPro());
+		this.getInfos(mailUser).setDateNaissance(newInfos.getDateNaissance());	
 	}
-	
-	public void modificationNumTel(String mailUser, String numTel) {
-		User user = (User) em.find(User.class, mailUser);
-		InfosCV infos = user.getInfos();
-		infos.setNumTel(numTel);
-		user.setInfos(infos);	
-	}
-	
-	public void modificationDateNaissance(String mailUser, String dateNaissance) {
-		User user = (User) em.find(User.class, mailUser);
-		InfosCV infos = user.getInfos();
-		infos.setDateNaissance(dateNaissance);
-		user.setInfos(infos);	
-		em.merge(user);
-	}
-	
-	public void modificationAdresse(String mailUser, String adresse) {
-		User user = (User) em.find(User.class, mailUser);
-		InfosCV infos = user.getInfos();
-		infos.setAdresse(adresse);
-		user.setInfos(infos);	
-	}
-	
-	public void modificationMailPro(String mailUser, String mailPro) {
-		User user = (User) em.find(User.class, mailUser);
-		InfosCV infos = user.getInfos();
-		infos.setMailPro(mailPro);
-		user.setInfos(infos);	
-	}
-	
-	
+		
 }

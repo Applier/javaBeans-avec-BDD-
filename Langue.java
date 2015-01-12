@@ -11,31 +11,31 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Loisir {
+public class Langue {
 	
 	/* Constructeur */
-	public Loisir() {}
+	public Langue() {}
 	
 	/* Attributs */
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idLoisir;
+	private int idLangue;
 	
 	@ManyToOne
 	private InfosCV infos;
-
+	
 	private String nom;
-	private String description;
-
+	private String niveau;
+	
 	/* Getters et Setters */
 	
-	public int getIdLoisir() {
-		return idLoisir;
+	public int getIdLangue() {
+		return idLangue;
 	}
 
-	public void setIdLoisir(int idLoisir) {
-		this.idLoisir = idLoisir;
+	public void setIdLangue(int idLangue) {
+		this.idLangue = idLangue;
 	}
 
 	public InfosCV getInfos() {
@@ -49,17 +49,18 @@ public class Loisir {
 	public String getNom() {
 		return nom;
 	}
-
+	
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 	
-	public String getDescription() {
-		return description;
+	public String getNiveau() {
+		return niveau;
 	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	
+	public void setNiveau(String niveau) {
+		this.niveau = niveau;
 	}
+	
 
 }

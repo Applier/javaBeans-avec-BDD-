@@ -3,7 +3,7 @@
  */
 package intergiciels.beans;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -17,7 +17,8 @@ public class User {
 	
 	/* Constructeur */
 	
-	public User(){}
+	public User(){
+	}
 	
 	/* Attributs */
 	
@@ -33,12 +34,12 @@ public class User {
 	@OneToOne(mappedBy = "user")
 	private InfosCV infos;
 	
-	// offres
-	@OneToMany(mappedBy = "user")
-	private Collection<Offre> offres;
+	// offres 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+	private Set<Offre> offres;
 	
 	/* Getters et Setters */
-	
+		
 	// mail
 	public String getMail() {
 		return this.mail;
@@ -64,15 +65,15 @@ public class User {
 	}
 	
 	// offres
-	public Collection<Offre> getOffres() {
+	public Set<Offre> getOffres() {
 		return this.offres;
 	}
-	public void setOffres(Collection<Offre> offres) {
+	public void setOffres(Set<Offre> offres) {
 		this.offres = offres;
 	}
 	
 	
-	/* Méthodes complémentaires sur la collection d'offres */
+	/* M�thodes compl�mentaires sur la Set d'offres */
 	public void addOffre(Offre offre) {
 		this.offres.add(offre);
 	}	

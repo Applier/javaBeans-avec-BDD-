@@ -4,6 +4,7 @@
 package intergiciels.beans;
 
 import java.util.Date;
+
 import javax.persistence.*;
 
 /**

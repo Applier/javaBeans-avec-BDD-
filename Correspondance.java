@@ -3,7 +3,8 @@
  */
 package intergiciels.beans;
 
-import java.util.Collection;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -15,7 +16,9 @@ import javax.persistence.*;
 public class Correspondance {
 	
 	/* Constructeur */
-	public Correspondance() {}
+	public Correspondance() {
+		this.nbMessages = 0;
+	}
 	
 	/* Attributs */
 	
@@ -26,27 +29,39 @@ public class Correspondance {
 	@OneToOne
 	private Offre offre;
 	
-	@OneToMany(mappedBy = "correspondance")
-	private Collection<Message> messages;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "correspondance")
+	private Set<Message> messages;
+	
+	private int nbMessages;
 	
 	/* Getters et Setters */
 	
-	// idCorres
 	public int getIdCorres() {
 		return idCorres;
 	}
 	public void setIdCorres(int idCorres) {
 		this.idCorres = idCorres;
 	}
-	// messagesRecus
-	public Collection<Message> getMessages() {
-		return messages;
+	
+	public Offre getOffre() {
+		return offre;
 	}
-	public void setMessagesRecus(Collection<Message> messages) {
+	public void setOffre(Offre offre) {
+		this.offre = offre;
+	}
+	public int getNbMessages() {
+		return nbMessages;
+	}
+	public void setNbMessages(int nbMessages) {
+		this.nbMessages = nbMessages;
+	}
+	public void setMessages(Set<Message> messages) {
 		this.messages = messages;
 	}
+	
+	
 		
-	/* Méthodes complémentaires sur les collections */
+	/* M�thodes compl�mentaires sur les Sets */
 	
 	// ajouter
 		

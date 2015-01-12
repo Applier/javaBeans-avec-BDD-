@@ -3,7 +3,7 @@
  */
 package intergiciels.beans;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -34,20 +34,20 @@ public class InfosCV {
 	private String adresse;
 	private String mailPro;
 	
-	@OneToMany(mappedBy = "infos")
-	private Collection<Competence> competences;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "infos")
+	private Set<Competence> competences;
 	
-	@OneToMany(mappedBy = "infos")
-	private Collection<Emploi> emplois;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "infos")
+	private Set<Emploi> emplois;
 	
-	@OneToMany(mappedBy = "infos")
-	private Collection<Formation> formations;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "infos")
+	private Set<Formation> formations;
 	
-	@OneToMany(mappedBy = "infos")
-	private Collection<Langue> langues;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "infos")
+	private Set<Langue> langues;
 	
-	@OneToMany(mappedBy = "infos")
-	private Collection<Loisir> loisirs;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "infos")
+	private Set<Loisir> loisirs;
 	
 	/* Setters et Getters */
 	
@@ -116,47 +116,47 @@ public class InfosCV {
 	}
 	
 	// domainesCompetences
-	public Collection<Competence> getCompetences() {
+	public Set<Competence> getCompetences() {
 		return this.competences;
 	}
-	public void setCompetences(Collection<Competence> competences) {
+	public void setCompetences(Set<Competence> competences) {
 		this.competences = competences;
 	}
 	
 	// emplois
-	public Collection<Emploi> getEmplois() {
+	public Set<Emploi> getEmplois() {
 		return this.emplois;
 	}
-	public void setEmplois(Collection<Emploi> emplois) {
+	public void setEmplois(Set<Emploi> emplois) {
 		this.emplois = emplois;
 	}
 		
 	// formations
-	public Collection<Formation> getFormations() {
+	public Set<Formation> getFormations() {
 		return this.formations;
 	}
-	public void setFormations(Collection<Formation> formations) {
+	public void setFormations(Set<Formation> formations) {
 		this.formations = formations;
 	}
 	
 	// langues
-	public Collection<Langue> getLangues() {
+	public Set<Langue> getLangues() {
 		return this.langues;
 	}
-	public void setLangues(Collection<Langue> langues) {
+	public void setLangues(Set<Langue> langues) {
 		this.langues = langues;
 	}
 		
 	// loisirs
-	public Collection<Loisir> getLoisirs() {
+	public Set<Loisir> getLoisirs() {
 		return this.loisirs;
 	}
-	public void setLoisirs(Collection<Loisir> loisirs) {
+	public void setLoisirs(Set<Loisir> loisirs) {
 		this.loisirs = loisirs;
 	}
 		
 		
-	/* M�thodes compl�mentaires sur les collections */
+	/* M�thodes compl�mentaires sur les Sets */
 		
 	// ajouter
 		
